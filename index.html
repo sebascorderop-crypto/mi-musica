@@ -1074,10 +1074,15 @@ document.addEventListener('click', function initMusic() {
         }
 
         function playMusic() {
+            // Si es la primera vez que se reproduce, saltar al segundo deseado
+            if (!musicStarted) {
+                music.currentTime = 12; // <--- CAMBIA ESTE NÚMERO (segundos)
+            }
+            
             music.play().then(() => {
                 isPlaying = true;
                 musicStarted = true;
-                hasBeenManuallyStarted = true; // Marcar que se inició manualmente
+                hasBeenManuallyStarted = true;
                 musicBtn.classList.remove('paused');
                 statusText.textContent = 'Reproduciendo';
             }).catch(e => {
@@ -1205,5 +1210,4 @@ document.addEventListener('click', function initMusic() {
         });
     </script>
 </body>
-
 </html>
